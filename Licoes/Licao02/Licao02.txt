@@ -1,0 +1,91 @@
+Quando estamos no modo interativo deixamos para tras um historico.
+Podemos salvar os comandos dessa sessao com o comando 'save "bla.gnplot"
+A extensao gnplot eh inventada por mim, e nao tem significado especial.
+
+$ gnuplot
+gnuplot> plot sin(x)
+gnuplot> save "Teste.gnplot"
+gnuplot> q
+
+Quando salvamos, tambem fica salvo a disposicao que o grafico possui.
+Eh interessante abrir o arquivo para descobrir o que ha dentro dele
+Vemos uma porrada de configuraçoes. Um dia desses conseguiremos entender
+o que eh cada uma dessas opçoes.
+
+Se desejarmos, podemos entrar no modo interativo e carregar as definiçoes
+do nosso arquivo de opçoes utilizando load.
+$ gnuplot
+gnuplot> load "Teste.gnplot"
+gnuplot> q
+
+
+A liçao 02 eh sobre melhorar a plotagem e sobre como criar estilo de linhas
+LINESTYLES, para cada dataset.
+
+Primeiro escrevemos set style para criar um grupo de configuraçoes que
+serao aplicados. Esse grupo de configuracoes precisa de um label, no 
+exemplo, o label eh um grupo enumerado.
+Fazemos entao set style line 1. Estamos criando um estilo de linhas.
+
+Depois de definir um estilo, podemos verificar quais estilos estao
+carregado no gnuplot utilizando 'show style line'.
+
+
+Finalmente, plotamos utilizando os estilos definidos com set style line.
+
+Vamos mudar a disposicao das legendas, primeiro mudando o range com
+set yrange [-2:2]
+E entao mudamos a localizaçao das legendas com
+set key bottom left
+
+Tabela que tem na lição, vai ajudar com a configuração de bordas.
+
++---------------------------------------+
+|         Graph Border Encoding         |
+|---------------------------------------|
+| bit  |   plot    |        splot       |
+|---------------------------------------|
+|    1 |  bottom   | bottom left front  |
+|    2 |  left     | bottom left back   |
+|    4 |  top      | bottom right front |
+|    8 |  right    | bottom right back  |
+|   16 | no effect | left vertical      |
+|   32 | no effect | back vertical      |
+|   64 | no effect | right vertical     |
+|  128 | no effect | front vertical     |
+|  256 | no effect | top left back      |
+|  512 | no effect | top right back     |
+| 1024 | no effect | top left front     |
+| 2048 | no effect | top right front    |
++---------------------------------------+
+
+Usar o set border eh semelhante à usar as numerações de permissão
+de arquivos do linux, soma-se os efeitos. Como quero as bordas
+baixo e esquerda, escrever set border 3 deve fazer o serviço.
+
+Existem ainda os pequenos traços que sao espelhos do eixo x e y.
+Podemos nos livrar deles na parte superior do gráfico escrevendo
+set tics nomirror
+Podemos ainda mexer nos 'tics' que sobraram. Fazemos
+set xrange [-0.5:13] 
+set xtics 0,0.5,13
+alterando o xtics interpretamos como
+iniciando em zero, andando de meio em meio, até 13.
+
+Podemos incluir legendas em pontos especificos do nosso eixo x
+com set xtics ("0" 0, "label" 5)
+
+Podemos também incluir simbolos no eixo com a mesma sintaxe.
+Alteramos a escala desses tics.
+
+Podemos alterar a posição da legenda utilizando coordenadas com
+set key at x,y
+
+Caso a disposiçao nao se mostre muito eficiente e precisemos 
+adicionar certa distancia entre os elementos, podemos adicionar
+offsets tanto no xlabel quanto no ylabel. Eu poderia, mas nao vou,
+verificar quais elementos possuem esse atributo.
+
+Podemos determinar o tamanho que o output tera, no momento
+em que determinamos o terminal.
+set terminal pngcairo size 1280,960

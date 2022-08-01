@@ -1,0 +1,88 @@
+Existem muitas formas de fazer o gnuplot rodar.
+O modo mais obvio eh o modo interativo, em que voce simplesmente
+chama o gnuplot e começa a escrever.
+A primeira liçao eh sobre plotar dados. No arquivo 'data.dat'
+temos pares ordenados em cada linha, separados por tabulaçao.
+Tambem eh possivel organizar os dados separando-os por virgulas, espacos,
+ponto e virgula. O importante eh que sejam linhas e colunas de dados com 
+algum espaço entre eles. Obviamente, cada ponto eh uma linha do arquivo.
+
+Tambem podemos salvar uma sequencia de comandos para que, quando o gnuplot
+for chamado, possamos passa-los como um script para ele.
+As liçoes serao salvas nessa forma, e alguns arquivos de dados serao forjados,
+o que pode gerar discordancia com o que o curso ensina, mas ao menos algum
+grafico sera plotado.
+Os scripts do gnuplot sao apenas arquivos texto com caracteres da tabela ascii.
+Num arquivo de dados...
+Podemos misturar virgulas e ponto e virgula? Podemos. Quando ele plota, tudo
+
+o que ele procura sao espacos para separar um ponto de plotagem em coordenadas
+e um caractere de nova linha para iniciar um novo ponto.
+
+
+Quando usado o gnuplot com arquivo de sequencia de comandos, utilizar a flag 
+-persist, assim:
+$ gnuplot -persist Licao.p 
+Genericamente temos:
+$ gnuplot -persist input1 input2 ...
+Dessa forma podemos visualizar o grafico sem problemas.
+
+Podemos mudar de diretorio com 'cd' para facilitar o uso de
+dados em diversas pastas, ou podemos passar todo o path
+para o arquivo.
+
+Podemos alterar a legenda dos dados de plotagem por meio
+da palavra chave 'key'
+Tambem podemos alterar o titulo com 'title'
+Nao se confunda. Key e title sao uma mesma entidade. Key eh um ativador
+do componente. Title eh um atributo do elemento.
+
+Por enquanto, plotagens sequenciais apagam a anterior.
+
+Informaçoes para o linetype:
+0: Nao mostra nada
+1: Um sinal de +
+2: Um sinal de x
+3: Um sinal de *
+4: Um quadrado com um ponto no centro
+5: Um quadrado preenchido
+6: Um circulo com um ponto no centro
+7: Um circulo preenchido
+8: Um triangulo com um ponto no centro
+ 
+Podemos pedir para o gnuplot nos mostrar quais os nomes
+de cada cor com o comando 'show palette colorsname'
+
+Podemos tambem pedir no gnuplot 'test' para vermos um
+cheat sheet das cores, estilos e tipos.
+Quando usamos o gnuplot com arquivo de comandos, alguns
+efeitos de mouse sao desativados. Pode ser mais interessante
+rodar o 'test' com o modo interativo neste caso.
+
+Podemos plotar mais de um tipo de dados separando o
+argumento 'plot yadayada, plot blablabla'
+Assim podemos colocar num mesmo grafico dois dados diferentes
+
+Nesse ponto do codigo as linhas se tornam muito compridas. Como eh
+um problema estilistico, pode-se usar o \ para continuar na linha
+seguinte, melhorando a legibilidade do codigo.
+
+Podemos escolher o range dos dados do grafico. mesmo que
+o gnuplot escolha automaticamente estes.
+set xrange [a:b]
+set yrange [a:b]
+Podemos escolher tambem o label dos eixos
+set xlabel "asdf"
+set ylabel "fsda"
+
+Podemos escolher para onde ira a imagem gerada.
+Mudamos o terminal para isso, com algumas customizaçoes
+
+set terminal png size 800,640
+set output "data.png"
+replot
+
+Numa terceira coluna de dados podemos colocar a coluna 
+dos erros, para ter um range de erro aceitavel.
+
+

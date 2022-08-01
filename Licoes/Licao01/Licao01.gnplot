@@ -1,0 +1,81 @@
+plot "data.dat" 
+# Plota os dados do arquivo data.dat, Atençao com a
+# organizaçao dos dados, com espaços separando colunas e 
+# quebra de linha separando linhas.
+
+unset key
+
+# Aparentemente 'key' eh a legenda de cada informacao
+# de plotagem. Podemos usar diferentes datasets
+
+replot
+
+# Quando alteramos algo e queremos re-exibir a ultima
+# plotagem, podemos usar o replot. No modo interativo
+# pode ser muito mais interessante do que utilizando 
+# com scripts.
+
+plot "data.csv" title "My Graph"
+# Alteramos o label do dataset
+
+plot "data.csv" title "new" linetype 7 linecolor 0
+# Alteramos o tipo de linha e a cor
+plot "data.csv" title "new" linetype 12 linecolor 0
+
+plot "data.csv" title "new" linetype 12 linecolor 0 with linespoints
+# "with linespoints" conecta os pontos com
+# linhas retas.
+
+# Existem abreviaçoes para os comandos:
+plot "data.csv" title "new" lt 12 lc 0 w lp
+set key
+unset key
+set k
+unset k
+replot
+
+# Podemos plotar com apenas linhas
+
+plot "data.csv" title "new" lt 12 lc 0 w lines
+
+# Podemos plotar diversos grupos de dados 
+# utilizando a virgula.
+plot "data.csv" title "new" lt 12 lc 0 w l, sin(x)
+
+# Mudando o range dos eixos.
+
+set xrange [-1:13]
+set yrange [-2:2]
+replot
+
+# Mudando a legenda dos eixos
+set xlabel "tururu"
+set ylabel "Why"
+replot
+
+# Plotando em arquivo
+set terminal png size 300,360
+set output "dataImg.png"
+replot
+# Devolvendo o terminal para onde estava.
+# Para deixar corretamente configurado, leia
+# as informaçoes quando o gnuplot eh inicializado
+# no modo interativo.
+set terminal x11
+replot
+
+
+# A terceira coluna num dataset eh a coluna de 
+# erros numa plotagem 2D.
+plot "data.csv" title "new" lt 12 lc 0 w errorbars , sin(x)
+
+# Podemos manipular os dados a partir do 
+# "using 1:2:3" para realizar aritmetica
+plot "data.csv" \
+using 1:2:($3/10) \
+title "new" \
+lt 12 \
+lc 0 \
+w errorbars \
+,\
+sin(x), x/5

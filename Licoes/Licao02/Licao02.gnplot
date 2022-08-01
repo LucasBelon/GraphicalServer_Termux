@@ -1,0 +1,105 @@
+set style line 1 \
+linecolor rgb "#8b0000" \
+linewidth 2
+
+set style line 2 \
+linecolor 0 \
+pointtype 7 \
+pointsize 0.9 
+
+show style line
+
+plot sin(x) \
+linestyle 1 \
+title "Teoria",\
+"data.csv"\
+using 1:2:($3/100)\
+linestyle 2\
+title "Pratica"\
+with errorbars
+
+
+set yrange [-2:2]
+set xrange [2.5:9.5]
+
+set key bottom left \
+box
+
+# A opçao 'box' adiciona 
+# uma pequena caixa
+# ao redor da legenda.
+replot
+
+set key width 1
+replot
+
+# Mudar a largura da
+# legenda faz ela 
+# desencostar do quadro
+# do grafico.
+
+set key font\
+"arial, 14"
+
+set grid
+# Podemos habilitar o grid do
+# grafico.
+
+set border 3
+# explicaçao no txt
+
+set tics nomirror
+
+set xrange [0:13.5]
+set yrange [-1.5:1.5]
+set xtics 2.5,0.5,9.5
+#set xtics ("0" 0, "label" 5)
+
+set xtics ("0" 0,\
+" {/Symbol p}" 1*pi,\
+"2{/Symbol p}" 2*pi,\
+"3{/Symbol p}" 3*pi,\
+"4{/Symbol p}" 4*pi)
+# Nao deu certo buscar o 
+# Symbol p. Talvez seja um
+# problema de fontes.
+# Mais tarde vou experimentar
+# instalar o LaTeX
+
+set tics scale 1.5
+
+set border linewidth 2
+
+set key at 0.3,-1.4
+
+set tics font ",24"
+# Podemos redefinir somente
+# o tamanho da fonte com a
+# sintaxe acima.
+
+set xlabel "X" font ",14"
+set ylabel "Y" font ",16"
+
+# Mais uma coisa que nao
+# funciona nesse tablet sao
+# tamanhos muito diferentes.
+
+set xlabel offset -1
+set ylabel offset 3
+# set tics offset 1
+
+# Para mudarmos o terminal
+# E salvarmos em arquivo
+# Precisamos especificar
+# Um terminal diferente
+# e um arquivo de output,
+# alem de plotar uma ultima
+# vez nosso grafico.
+
+#set terminal pngcairo \
+#size 1280,960
+#set output "licao02.png"
+
+replot
+
+set terminal x11
