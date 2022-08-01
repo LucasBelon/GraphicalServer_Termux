@@ -14,7 +14,7 @@ Para saber qual o endereço de conexao do vncviewer
 
 No campo NAME: Termux.
 
-SENHA: 44821596
+Senha: 12345678
 
 Já tá lá o servidor, ativo o tempo todo (Depois eu mato ele)
 Agora vou precisar de um gerenciador de janelas e um ambiente grafico.
