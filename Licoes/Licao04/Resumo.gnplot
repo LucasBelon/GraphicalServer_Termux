@@ -1,11 +1,9 @@
 # Arquivo de resumo da licao 4
 
+# Novamente, o arquivo txt ja eh suficiente para a boa
+# compreensao do que foi feito nesta licao.
 
 # EXEMPLO DE SCRIPT ORGANIZADO:
-
-# Informaçoes de Execuçao, terminal e output
-#set terminal pngcairo size 1920,980
-#set output "Script_Organizado.png"
 
 ## Informaçoes de layout
 # Definir Legendas
@@ -17,8 +15,8 @@ set key font ",14" # Alterar o tamanho da fonte somente
 #set key at 0.3, -1.4 # Posicionar em relacao a coordenadas
 
 # Definir o range que o grafico ira mostrar
-set xrange [0:13.5]
-set yrange [-1.5:1.5]
+set xrange [-20:20]
+set yrange [-2:2]
 # Definir a legenda dos eixos x e y
 set xlabel "tempo [s]"
 set ylabel "Velocidade [m/s]"
@@ -27,8 +25,8 @@ set xlabel font ",14"
 set ylabel font ",16"
 # Adicionar um offset para o label nao 
 # se aproximar muito dos tics
-set xlabel offset -1
-set ylabel offset 3
+#set xlabel offset -1
+#set ylabel offset 3
 
 # Definir bordas
 set border 3 # Mantem apenas a borda inferior e esquerda
@@ -39,18 +37,12 @@ set grid
 
 # Definir Tics (opçoes adicionais comentadas)
 set tics nomirror # Desativa os tics superior e direito
-set tics scale 1.5 # Aumenta espessura dos tics
-set tics font ",16" # Altera o tamanho da fonte somente
+#set tics scale 1.5 # Aumenta espessura dos tics
+set tics font ",8" # Altera o tamanho da fonte somente
 #set tics offset 3 # Adiciona um offset aos tics
 
-# Nomeia os tics para serem proporcionais a pi
-set xtics ("0" 0,\
- "{/Symbol p}" 1*pi,\
-"2{/Symbol p}" 2*pi,\
-"3{/Symbol p}" 3*pi,\
-"4{/Symbol p}" 4*pi)
-
-set ytics -3,0.5,3
+#set xtics -20,0.5,20
+#set ytics -2,0.5,2
 
 ## Informaçoes de plotagem (Nao sera escrito como linha unica)
 
@@ -65,21 +57,29 @@ pointtype 7 \
 pointsize 0.9
 
 # Definindo plotagem
-plot \
-"data.csv" \
-using 1:2:($3/20) \
-title "Pontos do CSV" \
-linestyle 2\
-with errorbars \
-,\
-sin(x)\
-,\
-x/5 - 1.5\
-title "Reta"\
-,\
-cos(x) \
-title "cosseno(x)"\
-,\
-tan(x) \
-linestyle 1 \
-title "tangente(x)"
+
+# definindo funçoes
+f(x,t) = sin(x-t)
+
+# Informaçoes de Execuçao, terminal e output
+set terminal gif size 1920,960 animate 4
+set output "Script_Organizado01.gif"
+
+# Realizando a plotagem utilizando um loop
+do for [i=1:96]{ \
+    plot f(x,i*0.1)\
+}
+
+# Informaçoes de Execuçao, terminal e output
+set terminal gif size 1920,960 animate 4
+set output "Script_Organizado02.gif"
+
+# Aumentando as amostras de pontos da funçao para
+# aumentar a resoluçao da curva
+set samples 200
+
+# Realizando a plotagem utilizando um loop
+do for [i=1:96]{ \
+    plot f(x,i*0.1)\
+}
+

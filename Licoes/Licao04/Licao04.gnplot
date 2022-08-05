@@ -1,0 +1,26 @@
+f(x,t) = sin(x-t)
+set terminal gif \
+animate \
+4
+
+set output "test.gif"
+
+set xrange[-20:20]
+set yrange[-2:2]
+
+do for [i=1:96]{ \
+    plot f(x,i*0.1)\
+}
+
+set output "test2.gif"
+set terminal gif \
+animate \
+4
+
+
+set samples 200
+
+do for [i=1:96]{ \
+    plot f(x,i*0.1)\
+}
+

@@ -4,7 +4,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/GraphicalServer_Termux/Licoes/Licao04
+cd ~/GraphicalServer_Termux/Licoes/Licao05
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -14,16 +14,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 Licao04.gnplot
-badd +1 Licao04.txt
+badd +1 Licao05.gnplot
+badd +1 Licao05.txt
 badd +1 Resumo.gnplot
+badd +3 Gerador.py
+badd +1 Potential_field.dat
 argglobal
 %argdel
-$argadd Licao04.gnplot
-$argadd Licao04.txt
+$argadd Licao05.gnplot
+$argadd Licao05.txt
 $argadd Resumo.gnplot
-$argadd data.dat
-edit Licao04.txt
+set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit Licao05.gnplot
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -44,14 +49,12 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 22 + 17) / 35)
-exe 'vert 1resize ' . ((&columns * 66 + 50) / 100)
-exe '2resize ' . ((&lines * 22 + 17) / 35)
-exe 'vert 2resize ' . ((&columns * 33 + 50) / 100)
-exe '3resize ' . ((&lines * 10 + 17) / 35)
+exe '1resize ' . ((&lines * 19 + 14) / 29)
+exe 'vert 1resize ' . ((&columns * 69 + 57) / 115)
+exe '2resize ' . ((&lines * 19 + 14) / 29)
+exe 'vert 2resize ' . ((&columns * 45 + 57) / 115)
+exe '3resize ' . ((&lines * 6 + 14) / 29)
 argglobal
-if bufexists(fnamemodify("Licao04.txt", ":p")) | buffer Licao04.txt | else | edit Licao04.txt | endif
-balt Licao04.gnplot
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -60,7 +63,7 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+let s:l = 1 - ((0 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -68,8 +71,8 @@ keepjumps 1
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("Licao04.gnplot", ":p")) | buffer Licao04.gnplot | else | edit Licao04.gnplot | endif
-balt Licao04.txt
+if bufexists(fnamemodify("Licao05.txt", ":p")) | buffer Licao05.txt | else | edit Licao05.txt | endif
+balt Licao05.gnplot
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -78,7 +81,7 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+let s:l = 1 - ((0 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -87,7 +90,7 @@ normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("Resumo.gnplot", ":p")) | buffer Resumo.gnplot | else | edit Resumo.gnplot | endif
-balt Licao04.gnplot
+balt Licao05.gnplot
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -96,19 +99,58 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 5) / 10)
+let s:l = 1 - ((0 * winheight(0) + 3) / 6)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 22 + 17) / 35)
-exe 'vert 1resize ' . ((&columns * 66 + 50) / 100)
-exe '2resize ' . ((&lines * 22 + 17) / 35)
-exe 'vert 2resize ' . ((&columns * 33 + 50) / 100)
-exe '3resize ' . ((&lines * 10 + 17) / 35)
+exe '1resize ' . ((&lines * 19 + 14) / 29)
+exe 'vert 1resize ' . ((&columns * 69 + 57) / 115)
+exe '2resize ' . ((&lines * 19 + 14) / 29)
+exe 'vert 2resize ' . ((&columns * 45 + 57) / 115)
+exe '3resize ' . ((&lines * 6 + 14) / 29)
+tabnext
+edit Gerador.py
+argglobal
+if bufexists(fnamemodify("Gerador.py", ":p")) | buffer Gerador.py | else | edit Gerador.py | endif
+balt Licao05.gnplot
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 13) / 26)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+tabnext
+edit Potential_field.dat
+argglobal
+if bufexists(fnamemodify("Potential_field.dat", ":p")) | buffer Potential_field.dat | else | edit Potential_field.dat | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 13) / 26)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+lcd ~/GraphicalServer_Termux/Licoes/Licao05
 tabnext 1
+set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

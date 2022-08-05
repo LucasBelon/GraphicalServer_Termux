@@ -1,0 +1,41 @@
+plot \
+"Potential_field.dat" \
+using 1:2:3 \
+with image
+
+set xrange[0:100]
+set yrange[0:100]
+
+set size ratio 1
+
+set tics out
+set tics nomirror
+
+set cbrange[-500:500]
+unset cbrange
+
+set palette rgb 33,13,10
+
+plot \
+"Potential_field.dat" \
+using 1:2:3 \
+with image, \
+"Potential_field.dat" \
+using 1:2:4:5 \
+every 5 \
+with vectors \
+linecolor -1 \
+filled \
+
+plot \
+"Potential_field.dat" \
+using 1:2:3 \
+with image, \
+"Potential_field.dat" \
+using 1:2:($4/8):($5/8) \
+every 5:5 \
+with vectors \
+linecolor -1 \
+filled \
+notitle
+

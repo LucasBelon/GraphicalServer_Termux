@@ -1,0 +1,77 @@
+# Arquivo de resumo da licao 5
+
+# Nada muito emocionante para resumir. Na lição de hoje vale a pena
+# ler os arquivos licao05. 
+
+# EXEMPLO DE SCRIPT ORGANIZADO:
+
+# Informaçoes de Execuçao, terminal e output
+set terminal pngcairo size 1920,980
+set output "Script_Organizado.png"
+
+## Informaçoes de layout
+
+# Definir proporção da plotagem
+set size ratio 1
+
+# Definir Legendas
+#set key # ativar a legenda de cada dataset (podemos desligar)
+#set key top right # Mudar a posiçao da legenda
+#set key width 1 # Criar uma espessura invisivel, um offset
+#set key box # Adicionar uma caixa na legenda
+#set key font ",14" # Alterar o tamanho da fonte somente
+#set key at 0.3, -1.4 # Posicionar em relacao a coordenadas
+
+# Definir o range que o grafico ira mostrar
+set xrange [0:100]
+set yrange [0:100]
+# Definir a legenda dos eixos x e y
+#set xlabel "tempo [s]"
+#set ylabel "Velocidade [m/s]"
+# Definir a fonte dos eixos x e y
+#set xlabel font ",14"
+#set ylabel font ",16"
+# Adicionar um offset para o label nao 
+# se aproximar muito dos tics
+#set xlabel offset -1
+#set ylabel offset 3
+
+# Definir bordas
+set border 3 # Mantem apenas a borda inferior e esquerda
+#set border linewidth 1 # aumenta a espessura das bordas
+
+# Definir o grid do grafico
+set grid
+
+# Definir Tics (opçoes adicionais comentadas)
+set tics nomirror # Desativa os tics superior e direito
+#set tics scale 1.5 # Aumenta espessura dos tics
+#set tics font ",16" # Altera o tamanho da fonte somente
+#set tics offset 3 # Adiciona um offset aos tics
+set tics out # Traz os tics uma camada mais a frente
+
+#set ytics -3,0.5,3
+
+## Informaçoes de plotagem
+
+# Definindo limites das cores utilizadas
+#set cbrange[-500:500]
+#unset cbrange
+
+# Definindo qual paleta de cores vamos utilizar
+set palette rgb 33,13,10
+
+# Definindo plotagem
+
+plot \
+"Potential_field.dat" \
+using 1:2:3 \
+with image, \
+"Potential_field.dat" \
+using 1:2:($4/8):($5/8) \
+every 5:5 \
+with vectors \
+linecolor -1 \
+filled \
+notitle
+

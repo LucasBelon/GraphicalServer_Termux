@@ -1,0 +1,45 @@
+A liçao 4 eh sobre animar dados.
+Podemos usar um terminal gif, e passar o parametro "animate",
+alem do tempo de delay, em centesimos de segundo.
+Escrever 4 nos da 25 frames por segundo (100/4)
+
+Acabamos de aprender que podemos utilizar um loop para 
+plotar os diversos graficos dentro do nosso gif.
+Definimos nosso gif para possuir 96 frames, e entao,
+cada plot que dermos, ira para um frame do gif.
+Na nossa variavel temporal, utilizamos o contador i 
+multiplicado por 0.1.
+
+Quando o gnuplot plota uma funçao, ele escolhe uma quantidade
+de amostras de dados para a plotagem. O padrao eh 100, mudamos
+para 200 para obter um grafico mais suave
+
+Precisamos reconfigurar o terminal ao fim da operaçao a fim de
+obtermos dois gifs
+
+Na liçao o professor pega um arquivo e faz o tratamento de
+dados. Um ponto importantissimo eh que ele adiciona duas
+linhas em branco. O motivo eh que o gnuplot interpreta
+os dados como dois datasets diferentes se for organizado
+dessa maneira.
+Quando temos mais de um bloco de dados em um arquivo, 
+podemos acessar esses diferentes blocos utilizando a sintaxe
+plot blablabla index N.
+Basicamente, o conjunto de dados eh tratado como um livro com
+indices.
+
+O gnuplot oferece uma ferramenta para sumarizar estatisticas
+de dados.
+(stats "dataset.dat" name A)
+Esse stats devolve uma estrutura de dados A, que possui 
+atributos como minimo e maximo, que podem ser acessados pelo
+nome do sumario seguido por um underline, por exemplo:
+(set xrange[A_min_x:A_max_x])
+(set yrange[A_min_y:A_max_y])
+
+
+Hoje nao vai ser o dia em que eu vou atras de dados, para 
+tratar, separar, realizar a plotagem, mesmo que seja 
+bastante interessante. Para melhor entendimento sobre
+a funcao stats, melhor buscar um livro ou tutorial mais
+avançado.
