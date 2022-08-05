@@ -1,0 +1,22 @@
+f(x) = a*exp(-b*x)
+
+fit f(x) "dados_py.dat" \
+using 1:2 \
+via a,b
+
+plot "dados_py.dat" \
+with errorbars, f(x) 
+
+g(x) = a*exp(-b*x)
+
+fit g(x) "dados_py.dat" \
+using 1:2:3 \
+yerrors \
+via a,b
+
+plot "dados_py.dat" \
+with errorbars\
+, \
+f(x)\
+,\
+g(x)

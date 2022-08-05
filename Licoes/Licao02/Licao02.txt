@@ -1,24 +1,3 @@
-Quando estamos no modo interativo deixamos para tras um historico.
-Podemos salvar os comandos dessa sessao com o comando 'save "bla.gnplot"
-A extensao gnplot eh inventada por mim, e nao tem significado especial.
-
-$ gnuplot
-gnuplot> plot sin(x)
-gnuplot> save "Teste.gnplot"
-gnuplot> q
-
-Quando salvamos, tambem fica salvo a disposicao que o grafico possui.
-Eh interessante abrir o arquivo para descobrir o que ha dentro dele
-Vemos uma porrada de configuraçoes. Um dia desses conseguiremos entender
-o que eh cada uma dessas opçoes.
-
-Se desejarmos, podemos entrar no modo interativo e carregar as definiçoes
-do nosso arquivo de opçoes utilizando load.
-$ gnuplot
-gnuplot> load "Teste.gnplot"
-gnuplot> q
-
-
 A liçao 02 eh sobre melhorar a plotagem e sobre como criar estilo de linhas
 LINESTYLES, para cada dataset.
 

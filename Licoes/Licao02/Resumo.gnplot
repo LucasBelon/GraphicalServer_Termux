@@ -1,0 +1,147 @@
+# Arquivo de resumo da licao 2
+
+# Podemos criar um estilo de plotagem proprio
+# Nesse estilo podemos incluir 
+# - A cor de plotagem (linecolor rgb "#8b0020")
+# - A espessura da linha ou do ponto (linewidth 2 || pointsize 0.9)
+# - O tipo da linha ou ponto (linetype 2 || pointtype 7)
+# - Outros detalhes que eu ainda desconheço.
+# (set style line 1 linecolor rgb "#8b0000" linewidth 2 &&
+# set style line 2 linecolor 0 pointtype 7 pointsize 0.9)
+
+# Podemos a mudar a disposiçao das legendas, seja em posiçoes predefinidas
+# ou em posiçoes relativas a coordenadas dentro do grafico.
+# (set key bottom left box)
+# Alterar a legenda para uma posiçao especifica
+# (set key at 0.3, -1.4)
+# Podemos escolher um offset para a legenda, com
+# (set key width 1)
+# Podemos colocar nossa legenda dentro de uma caixa com o comando box
+# (set key box)
+# Alem de mudar a fonte
+# (set key font "arial, 14")
+# Se quisermos apenas redefinir uma das informaçoes omitimos o restante
+# (set key font ",14")
+
+# Podemos alterar as bordas, em especifico quais serao exibidas.
+# Esse comando possui uma tabela relacionada, e funciona somando-se os
+# bits para obter um efeito hibrido. A tabela encontra-se no arquivo .txt
+# Quero as bordas da base e da esquerda, bits 1 e 2, somando, temos 3, portanto
+# (set border 3)
+# Podemos alterar a espessura da borda com
+# (set border linewidth 2)
+# Fazer sumir dois eixos da borda do grafico nao elimina os pequenos traços
+# que sao espelhos dos traços dos eixos principais.
+
+# Os pequenos traços sao chamados de tics. Eles carregam consigo os numeros da
+# escala, e se apresentam acima e a direita do grafico. Para desligar usamos
+# (set tics no mirror)
+# Podemos escolher um intervalo em que esses tics aparecerao, num eixo especifico,
+# e com qual passo. A sintaxe eh inicio,passo,fim
+# (set xtics 2.5, 0.5, 9.5)
+#
+# Podemos alterar qual valor sera exibido em cada ponto destes tics. Utilizar essa
+# opçao desliga o restante dos tics, o que nos forçaria a reescrever um por um. 
+# Eventualmente um loop seria de grande ajuda nessa tarefa.
+# ( set xtics ("0" 0, "novo tic" 5) )
+# Perceba que coloco a string e o valor num mesmo campo para essa redefiniçao
+# Se o terminal aceitar, podemos utilizar letras gregas
+# (
+# set xtics ("0" 0,\
+# " {/Symbol p}" 1*pi,\
+# "2{/Symbol p}" 2*pi,\
+# "3{/Symbol p}" 3*pi,\
+# "4{/Symbol p}" 4*pi)
+# )
+# pi eh uma constante predefinida dentro do gnuplot, e podemos realizar aritmetica
+# com ele.
+#
+# Podemos mudar a espessura dos tics com
+# (set tics scale 1.5)
+#
+# Como se trata de uma string, podemos alterar a fonte
+# (set tics font ",14")
+
+
+
+# EXEMPLO DE SCRIPT ORGANIZADO:
+
+# Informaçoes de Execuçao, terminal e output
+#set terminal pngcairo size 1920,980
+#set output "Script_Organizado.png"
+
+## Informaçoes de layout
+# Definir Legendas
+set key # ativar a legenda de cada dataset (podemos desligar)
+set key bottom left # Mudar a posiçao da legenda
+set key width 1 # Criar uma espessura invisivel, um offset
+set key box # Adicionar uma caixa na legenda
+set key font ",14" # Alterar o tamanho da fonte somente
+#set key at 0.3, -1.4 # Posicionar em relacao a coordenadas
+
+# Definir o range que o grafico ira mostrar
+set xrange [0:13.5]
+set yrange [-1.5:1.5]
+# Definir a legenda dos eixos x e y
+set xlabel "tempo [s]"
+set ylabel "Velocidade [m/s]"
+# Definir a fonte dos eixos x e y
+set xlabel font ",14"
+set ylabel font ",16"
+# Adicionar um offset para o label nao 
+# se aproximar muito dos tics
+set xlabel offset -1
+set ylabel offset 3
+
+# Definir bordas
+set border 3 # Mantem apenas a borda inferior e esquerda
+set border linewidth 2 # aumenta a espessura das bordas
+
+# Definir o grid do grafico
+set grid
+
+# Definir Tics (opçoes adicionais comentadas)
+set tics nomirror # Desativa os tics superior e direito
+set tics scale 1.5 # Aumenta espessura dos tics
+set tics font ",16" # Altera o tamanho da fonte somente
+#set tics offset 3 # Adiciona um offset aos tics
+
+# Nomeia os tics para serem proporcionais a pi
+set xtics ("0" 0,\
+ "{/Symbol p}" 1*pi,\
+"2{/Symbol p}" 2*pi,\
+"3{/Symbol p}" 3*pi,\
+"4{/Symbol p}" 4*pi)
+
+set ytics -3,0.5,3
+
+# Informaçoes de plotagem (Nao sera escrito como linha unica)
+
+# Definindo estilos de plotagem
+set style line 1 \
+linecolor rgb "#8b0000" \
+linewidth 2
+
+set style line 2 \
+linecolor 0 \
+pointtype 7 \
+pointsize 0.9
+
+# Definindo plotagem
+plot \
+"data.csv" \
+using 1:2:($3/20) \
+title "Pontos do CSV" \
+linestyle 2\
+with errorbars \
+,\
+sin(x)\
+,\
+x/5\
+,\
+cos(x) \
+title "cosseno"\
+,\
+tan(x) \
+linestyle 1 \
+title "Tangente"

@@ -1,0 +1,74 @@
+# Arquivo de resumo da licao 1
+
+# Podemos abrir o gnuplot no modo interativo ou podemos passar um script com os comandos
+# que desejamos que ele execute. A extensao desses comandos nao importa, basta que sejam
+# arquivos de texto plano.
+# No caso, eu utilizo a extensao .gnplot para saber que se trata desse script.
+
+# Exemplo executando gnuplot passando arquivo script de comandos:
+# $ gnuplot Licao01.gnplot
+# Para evitar que o grafico desapareça ao fim da execuçao, utilizar a flag
+# $ gnuplot -persist Licao01.gnuplot
+
+# A outra forma de utilizar um script eh carregando o arquivo dentro do modo interativo.
+# Exemplo carregando script no modo interativo:
+# gnuplot> load "Licao01.gnplot"
+
+# A ultima forma eh abrir o gnuplot e digitar os comandos um a um
+# gnuplot> plot sin(x)
+
+# Quando tratamos da plotagem simples, sem varios conjuntos de dados, podemos separar
+# a estrutura do programa em duas. 
+# - O layout: 
+# - - As legendas dos eixos (set xlabel "X" || set ylabel "metros / segundo" )
+# - - O range de exibiçao dos dados (set xrange [-1:13] || set yrange [-2:2] )
+# - - O terminal adotado e o arquivo de output:
+# - - - (set terminal png size 300,360 ; set output "dataImg.png)
+# - - - Podendo escolher neste momento, o nome de arquivo a ser utilizado na plotagem,
+# - - - o tipo de terminal (o terminal altera algumas opçoes de layout, fontes e estilos),
+# - - - e a resoluçao que sera adotada.
+# 
+# - A plotagem em si:
+# - - Qual arquivo ou funcao sera plotada (plot sin(x) || plot "dataset.dat")
+# - - Quais colunas serao usadas como dados (using 1:2:3 || using 1:2:($3/10))
+# - - Qual tipo de linha (linetype 12)
+# - - Qual a cor de plotagem (linecolor 7)
+# - - Qual o nome do dataset (title "dataset")
+# - - Se sera usado o terceiro eixo para barras de erro (with errorbars)
+# - - Ou se a plotagem utilizara apenas linhas, apenas pontos, ou ambos
+# - - - ( with points || with lines || with linespoints )
+
+# Informaçoes como linetype, linecolor, etc, podem ser obtidas visualmente rodando,
+# no modo interativo, o comando "test". Este comando exibira diferentes cores, tipos
+# de linhas, opçoes de legenda que veremos mais a frente.
+
+# Para cores em especifico:
+# - Podemos pedir que o gnuplot nos mostre as cores nomeadas com "show palette colors name"
+
+# EXEMPLO DE SCRIPT ORGANIZADO:
+
+# Informaçoes de Execuçao, terminal e output
+set terminal png size 1920,980
+set output "Script_Organizado.png"
+
+# Informaçoes de layout
+set key # ativar a legenda de cada dataset (podemos desligar)
+# Definir o range que o grafico ira mostrar
+set xrange [-1:13]
+set yrange [-2:2]
+# Definir a legenda dos eixos x e y
+set xlabel "tempo [s]"
+set ylabel "Velocidade [m/s]"
+
+# Informaçoes de plotagem (Nao sera escrito como linha unica)
+
+plot "data.csv" \
+using 1:2:($3/10) \
+title "Pontos do CSV" \
+linetype 12 \
+linecolor 0 \
+with errorbars \
+,\
+sin(x)\
+,\
+x/5

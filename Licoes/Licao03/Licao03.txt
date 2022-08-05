@@ -1,0 +1,26 @@
+Essa liçao eh sobre ajustar uma curva a um conjunto de pontos.
+Particularmente, o metodo utilizado eh conhecido como
+metodo dos minimos quadrados, geralmente se aprende sobre em
+materias de faculdade como analise numerica ou calculo numerico.
+
+Esta eh uma liçao muito curta do ponto de vista do gnuplot.
+
+Primeiro define-se uma funçao, com a sintaxe matematica mesmo.
+Entao pedimos que o programa faça encaixar essa funçao em nossos
+dados, ajustando os coeficientes a e b.
+Quando nao se tem erro, o metodo dos minimos quadrados eh aplicado
+normalmente. Quando ha erro relacionado a cada medida, no calculo
+do erro eh adicionado um peso w, na passagem
+Erro = Soma w * ( y - f(x_i) )**2
+
+Definida a funçao, pedimos que o programa encaixe os coeficientes
+em nossa curva, ajustando os coeficientes a e b.
+O comando pode ser visto ao lado.
+
+Quando temos pesos a sintaxe se altera um pouco. Teremos novamente
+a sintaxe em Licao03.gnplot.
+
+Neste caso precisamos indicar ao gnuplot que o arquivo possui 
+dados de erro, utilizando a palavra-chave "yerrors"
+
+
