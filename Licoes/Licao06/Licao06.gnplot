@@ -1,0 +1,62 @@
+set xrange[0:1]
+f(x) = x
+set pm3d map
+splot f(x)
+
+set palette rgb 7,5,15
+splot f(x)
+
+set palette rgb 23,28,3
+splot f(x)
+
+set palette rgb 10,12,14 
+splot f(x)
+
+set palette defined\
+(0 0 0 0, \
+ 0.3 1 0 0,\
+ 0.6 "blue",\
+ 1 "#ffffff")
+splot f(x)
+
+set xrange[0:10]
+splot f(x)
+
+set palette defined \
+(0 "green", \
+ 0.5 "green", \
+ 0.5 "red", \
+ 1 "red")
+splot f(x)
+
+set xrange [-10:10]
+splot f(x)
+splot sin(x)*x
+
+set palette defined (-6 "yellow", 0 "blue", 8 "red")
+splot sin(x)*x
+
+set samples 1000,1000
+splot sin(x)*x
+
+set palette HSV
+splot sin(x)*x
+
+set palette defined (0 0 1 1, 1 1 1 1)
+splot sin(x)*x
+
+splot f(x)
+
+set palette model CMY
+
+set palette model RGB
+
+show palette rgbformulae
+
+set palette model rgb functions\
+1.1*gray**0.25,\
+gray**0.75,\
+0
+
+splot f(x)
+

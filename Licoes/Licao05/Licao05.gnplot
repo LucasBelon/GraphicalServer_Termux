@@ -1,44 +1,41 @@
-A licao 5 ja chega dando um tapa na cara. Pra obter os dados foi 
-preciso copiar um gerador em python que leva um bom tempo pra fazer
-os dados. A parte boa eh que deu pra copiar tudo e executar 
-certinho. Adicionei pelo vim uma legenda pra o que cada coluna
-significa.  
+plot \
+"Potential_field.dat" \
+using 1:2:3 \
+with image
 
-Precisamos pra aula de hoje 5 campos: 
-Pos X, Pos Y, Valor Escalar, Compte X vetor, Compte Y vetor.
-O programa copiado gerou os dados. 
-Aviso: Demora um pouco pra rodar.  
+set xrange[0:100]
+set yrange[0:100]
 
-Plotamos, para começar, o mapa de calor (HeatMap), na sequencia 
-realizamos alguns ajustes. Primeiro o range. Em seguida consertamos
-o formato dos pixels, forçando-os a serem quadrados com a razao de
-imagem.
-Entao trazemos os tics para uma camada da imagem superior para que
-eles nao sejam escondidos pelo mapa de calor.
-Mudamos o range de cores que o mapa utiliza "Para representar
-melhor o fenomeno fisico".
-Alteramos a paleta de cores para arco-iris. Aparentemente existe 
-uma opção em help do gnuplot para obtermos as paletas disponíveis. 
+set size ratio 1
 
-gnuplot> help palette
-Subtopic of palette: rgbformulae
+set tics out
+set tics nomirror
 
-Com isso, podemos finalmente plotar nosso campo vetorial.
-Iremos plotar, na verdade, duas imagens.
-Precisamos especificar quais colunas serão usadas.
-using x:y:vetorx:vetory. De acordo com nossos dados, não vamos
-escrever 1:2:3:4 como antes. Escrevemos então 1:2:4:5
-Poderiamos passar um quinto valor para adicionar cor aos vetores.
-Hoje não.
+set cbrange[-500:500]
+unset cbrange
+set output "whatafuck"
+set palette rgb 33,13,10
 
-Para evitar que hajam vetores em excesso no nosso mapa, usamos
-o comando (every 5), para plotarmos a cada 5, diminuindo a 
-quantidade de vetores e obtendo uma imagem mais limpa do mapa.
+plot \
+"Potential_field.dat" \
+using 1:2:3 \
+with image, \
+"Potential_field.dat" \
+using 1:2:4:5 \
+every 5 \
+with vectors \
+linecolor -1 \
+filled \
 
-Agora diminuimos a cada 5 linhas e 5 colunas. Pra finalizar
-diminuimos o tamanho de cada vetor usando o $valor que já 
-conhecemos de antes.
+plot \
+"Potential_field.dat" \
+using 1:2:3 \
+with image, \
+"Potential_field.dat" \
+using 1:2:($4/8):($5/8) \
+every 5:5 \
+with vectors \
+linecolor -1 \
+filled \
+notitle
 
-Utilizamos a opção with vectors para plotagem dos vetores,
-alteramos a cor, e dizemos para preencher o desenho dos vetores.
-Por fim, nos livramos do título e tcharam, tá pronto.

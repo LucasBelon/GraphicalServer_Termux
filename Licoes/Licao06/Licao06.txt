@@ -1,0 +1,23 @@
+Na lição 6 aprendemos um pouco mais sobre paletas de cores, 
+e qual a melhor maneira de utilizar os mapas de calor, criando 
+diferentes cores para diferentes pontos, e deixando o programa 
+fazer a interpolação entre elas. 
+
+O maior problema de se trabalhar com o sistema de paleta de 
+cores é que ele utiliza um sistema que usa uma sintaxe 
+set palette rgb a,b,c onde abc sao três numeros. Cada um desses 
+números não representa uma intensidade do rgb, mas uma função 
+que é aplicada a cada intensidade de cor. Dessa forma, escrever 
+por exemplo 1,1,1 não te dará a intensidade 1 para 
+vermelho verde e azul, mas uma combinação de funções de 
+intensidade (do tipo f(x) ), que será aplicada a cada uma das 
+cores.
+
+Utilizamos um terminal de plotagem que é usado para plotagem 3d, 
+mas usamos para mostrar os gradientes de cores e como o sistema
+de paletas de cores funciona. Não utilizamos para plotagem 3d, 
+mas sim para plotagem de uma superfície em planta, utilizando
+apenas os eixos x e y.
+
+Além disso, tocamos a superfície dos outros modelos de cores, 
+como o HSV e o CMY. 
