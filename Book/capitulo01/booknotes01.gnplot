@@ -1,0 +1,32 @@
+# Algumas anotacoes sobre o capitulo 1 do livro
+
+#plot "data.csv" using 1:2 with boxes
+# plota: usando as colunas 1 e 2 dos dados
+# como eixo x e y, gerando um histograma
+
+set terminal pngcairo
+set output "~/storage/Download/boxes.png"
+plot [-0.5:12][0:12] "data.dat" using 1:2 with boxes
+
+set terminal
+set output
+# Precisamos devolver o terminal e o output
+# para o padrao
+
+
+set terminal pngcairo
+set output "~/storage/Download/lines.png"
+
+set xlabel "Cluster Size"
+set ylabel "run time [seg]"
+
+set logscale
+
+unset border
+unset xtics
+unset ytics
+
+
+plot [10:20] "exponencial.dat" using 1:2 with lines
+set terminal
+set output

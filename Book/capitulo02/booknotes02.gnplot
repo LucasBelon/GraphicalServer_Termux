@@ -1,0 +1,29 @@
+# Algumas anotacoes sobre o capitulo 2 do livro
+
+set terminal pngcairo
+set output "~/storage/Download/Chap2.png"
+plot [][-2:2] sin(x), x, x-(x**3)/6
+
+set terminal unknown
+set output
+
+
+set terminal pngcairo
+set output "~/storage/Download/Prices.png"
+
+# plot \
+# "prices" using 1:2 title "PQR" with lines,\
+# "prices" using 1:3 title "XYZ" with linespoints,\
+
+plot "prices" using 2:3 title "ABC" with points
+
+# Abreviação:
+# plot \
+# "prices" u 1:2 t "PQR" w l,\
+# "" u 1:3 t "XYZ" w lp,\
+# "" u 2:3 t "versus" w p
+
+set terminal unknown
+set output
+
+# NAO DEIXAR COMENTARIOS GRUDADOS EM COMANDOS!!!
