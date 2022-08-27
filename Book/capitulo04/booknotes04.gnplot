@@ -1,0 +1,14 @@
+# Algumas anotacoes sobre o capitulo 4 do livro
+
+# Existem pseudo-arquivos e metadata no gnuplot
+# o capitulo 4 começa mostrando diferentes disposições
+# e estilos de plotagem que RELACIONAM os dados de uma
+# maneira mais adequada.
+
+# Podemos pular algumas linhas no cabeçalho do arquivo
+# de registros usando o comando
+
+plot "data" skip 2 using 1:2
+
+
+
