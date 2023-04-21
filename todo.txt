@@ -1,0 +1,8 @@
+- Criar um script de instalação para que eu possa
+  criar gráficos em outras máquinas sem perder
+  tempo ou esforço. [ ]
+- Criar uma pasta "projeto automato" com
+  templates e trechos interessantes para
+  reaproveitar.
+- Criar um programa em C que interaja com o
+  gnuplot.
